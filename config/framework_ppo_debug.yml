@@ -1,0 +1,38 @@
+proc:
+  mode: 'train'
+  task_path: 'train_with_dataset_v4p0.yml'
+  random_seed: 1
+  max_num_workers: 1
+  render_num: 1
+  batch_size: 1
+  max_episode: 2.e+4
+  max_time_step: 5.e+7
+  model_path: null    # 无初始模型
+
+  max_episode_steps: null  # 由任务配置文件指定
+  state_dim: null    # 由任务配置文件指定
+  action_dim: null    # 由任务配置文件指定
+
+#  Agent
+#  learning_rate: 1.e-5
+agent:
+  seed: 0
+  has_continuous_action_space: True
+  lr_critic: 2.e-4
+  lr_actor: 1.e-4
+  K_epochs: 80
+  eps_clip: 0.2
+  gamma: 0.99
+  action_std: 0.5
+  action_std_decay_rate: 0.98
+  min_action_std: 1.e-5
+  action_std_decay_interval: 5
+  device: 'cpu'
+
+worker:
+  id: null
+  render: null
+
+log:
+  log_name: null
+  model_save_interval: 20

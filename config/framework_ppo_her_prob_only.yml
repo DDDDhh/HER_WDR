@@ -1,0 +1,50 @@
+# Ablation: HER with ONLY the probability filter (no min_steps / min_alt gates).
+# Tests how much trigger_prob alone contributes vs the full quality filter.
+proc:
+  mode: 'train'
+  task_path: 'flare_landing.yml'
+  random_seed: 1
+  max_num_workers: 10
+  render_num: 0
+  batch_size: 400
+  max_episode: 50000
+  max_time_step: 5.0e+7
+  model_path: null
+
+  max_episode_steps: null
+  state_dim: null
+  action_dim: null
+
+her:
+  enable: true
+  trigger_prob: 0.8
+  min_steps: 1
+  min_alt_descended: 0.0
+
+agent:
+  seed: 1
+  has_continuous_action_space: true
+  lr_actor: 2.0e-4
+  lr_critic: 3.0e-4
+  K_epochs: 10
+  eps_clip: 0.2
+  gamma: 0.97
+  entropy_coef: 0.05
+  max_grad_norm: 0.5
+  lr_decay: 0.9995
+
+  action_std_init: 0.5
+  action_std: 0.5
+  action_std_decay_rate: 0.998
+  min_action_std: 0.15
+  action_std_decay_interval: 5
+
+  device: 'cpu'
+
+worker:
+  id: null
+  render: null
+
+log:
+  log_name: null
+  model_save_interval: 10
